@@ -127,7 +127,10 @@ def expand__(matrix, prec=10, pi=0):
             vector = next(iiter)
             # continue
         llist.append( np.append(vector[:2], mark))
-    return np.append( np.array(llist), ((0,0,marks[-1]),), axis=0)
+    to_return = np.append( np.array(llist), ((0,0,marks[-1]),), axis=0)
+    diff__ = diff_marks(to_return[:,-1]).reshape(-1,1)
+    # print(diff__.shape, to_return.shape) # debug
+    return np.append( to_return, (diff__.reshape(-1,1)), axis = 1)
 
 def gamma(array): # TO DO
     "Function that calculates gamma value. Angle must be in radians."
